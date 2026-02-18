@@ -37,5 +37,21 @@ def handle_posts():
         return jsonify(posts)
 
 
+def get_post_by_id(post_id):
+    for post in posts:
+        if post['id'] == post_id:
+            return post
+    return None
+
+
+@app.route('/api/posts/<int:post_id>', methods= ['DELETE'])
+def delete_post(post_id):
+    post = get_post_by_id(post_id)
+    if post is None:
+        return 'post not found', 404
+    posts.remove(post)
+    return jsonify(post), 200
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5002, debug=True)
