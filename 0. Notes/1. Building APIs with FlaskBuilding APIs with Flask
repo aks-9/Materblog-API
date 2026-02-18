@@ -1,0 +1,9 @@
+In previous Sprint, you built a blog website using Flask’s templating capabilities, which is a Server-Side Rendering (SSR) approach. SSR is excellent, but there’s another equally crucial method used widely in web applications, called Client-Side Rendering (CSR). As you learned, with CSR, the server sends minimal HTML to the client, and JavaScript running in the browser dynamically generates the HTML content. This CSR is often achieved by interacting with APIs.
+
+An API is a set of rules that enable different software applications to communicate with each other. APIs are not just used for web applications, but for allowing different software systems to interact in general. For instance, when you use a mobile app, the app uses an API to retrieve data from the server. When you see a weather widget on a website, the widget uses an API to fetch the latest weather information.
+
+In this exercise, we’re going to focus on building the API using Flask. We’ll provide you with a frontend application that you’ll run on your local machine. This frontend will interact with your Flask API, which will be running on Codio. The frontend and backend being on different origins (your local machine vs Codio) is a typical example of cross-origin requests. More on that, on the next sections.
+
+It’s important to note that while we’re using a blog website frontend for this exercise, APIs have a much broader use. We’re providing you with a frontend as a way to visually test and interact with your API.
+
+This exercise will give you hands-on experience with building APIs and deepen your understanding of how modern, interactive web applications work. By the end, you’ll be well on your way to becoming a pro at backend development!
