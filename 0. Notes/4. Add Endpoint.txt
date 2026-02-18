@@ -1,0 +1,31 @@
+# Input
+# This endpoint should expect a JSON object in the body of the request with the following structure:
+# {
+#     "title": "<title of the new post>",
+#     "content": "<content of the new post>"
+# }
+# Both title and content are required. If the client does not provide these, your endpoint should return an appropriate error response. Go to “Error Handling” section for more information.
+# Notice that you don’t need to send the ID, since your backend will generate a new ID automatically. Also, remember that the ID must be an integer for the frontend to work correctly.
+# Output
+# If the client provides valid input, your endpoint should add the new post to the list of posts and return a JSON object with the following structure:
+{
+    "id": "<id of the new post>",
+    "title": "<title of the new post>",
+    "content": "<content of the new post>"
+# }
+# The id should be a new unique identifier for this post. The status code of the response should be 201 Created.
+# 💡 Note: your code needs to generate this unique identifier.
+
+#  Testing Your API
+# After you’ve implemented the “add” endpoint, it’s time to test it with Postman.
+# Start your Flask app if it’s not already running.
+# Open Postman and create a new POST request to http://localhost:5002/api/posts.
+# In the “Body” tab, select “raw” and then “JSON” from the dropdown menu.
+# Enter a JSON object with ‘title’ and ‘content’ for your new post.
+# Send the request.
+
+# You should receive a response with status code 201 and the body containing the new post with a unique id. If you send a GET request to /api/posts, you should see your new post in the list of posts.
+
+# Try also sending a POST request without title or content, or without both, and check if your endpoint returns the correct error responses.
+
+# If everything is working as expected, congratulations! 🎉 You’ve successfully implemented the “add” operation. In the next step, you’ll implement the “delete” operation. But before moving on, make sure your “add” operation is working correctly!
