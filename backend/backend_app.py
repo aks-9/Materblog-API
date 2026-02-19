@@ -9,6 +9,20 @@ posts = [
     {"id": 2, "title": "Second post", "content": "This is the second post."},
 ]
 
+from flask_swagger_ui import get_swaggerui_blueprint
+
+SWAGGER_URL="/api/docs"  # (1) swagger endpoint e.g. HTTP://localhost:5002/api/docs
+API_URL="/static/masterblog.json" # (2) ensure you create this dir and file
+
+swagger_ui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': 'Masterblog API' #
+    }
+)
+app.register_blueprint(swagger_ui_blueprint, url_prefix=SWAGGER_URL)
+
 
 def validate_post_data(data):
     if not isinstance(data, dict):
@@ -92,18 +106,19 @@ def search_posts():
     filtered_posts = []
     for post in posts:
         # Check if title matches (if query provided)
-        title_match = False
-
-        if title_query:
-            title_match = title_query in post['title'].lower()
-
-        # title_match = title_query in post['title'].lower() if title_query else False
+        title_match = title_query in post['title'].lower() if title_query else False
 
         # Check if content matches (if query provided)
         content_match = content_query in post['content'].lower() if content_query else False
 
-        if title_match or content_match:
+        if (title_query or content_query) and (title_match or content_match):
             filtered_posts.append(post)
+        elif not title_query and not content_query:
+            # If no query provided, return all posts (or you could return empty list depending on requirement)
+            # Given the loop, we could just append all, but search usually implies some filter.
+            # If no filters are provided, it's returning empty list in current code (because filtered_posts is empty).
+            # Let's stick to returning empty list if no query provided to avoid returning all posts on empty search.
+            pass
 
     return jsonify(filtered_posts)
 
